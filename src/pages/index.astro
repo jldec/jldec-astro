@@ -1,10 +1,17 @@
 ---
 import { getCollection, render } from 'astro:content'
+import { getImage } from 'astro:assets'
 import ContentLayout from '../layouts/ContentLayout.astro'
 
 const pages = await getCollection('pages')
 const indexPage = pages.find((p) => p.id === 'index')
 if (!indexPage) throw new Error('index.md not found')
+
+const allBlog = await getCollection('blog')
+const blogIndex = allBlog.find((p) => p.id === 'index')
+const blogSplashSrc = blogIndex?.data.splash?.image
+  ? (await getImage({ src: blogIndex.data.splash.image })).src
+  : null
 
 const { Content } = await render(indexPage)
 ---
@@ -12,6 +19,8 @@ const { Content } = await render(indexPage)
 <ContentLayout
   title="Jürgen Leschner"
   description="Co-founder & product engineer 🌳 The Web is for everyone ❤️"
+  prefetchLinks={['/blog']}
+  preloadImages={blogSplashSrc ? [blogSplashSrc] : []}
 >
   <div class="prose max-w-none">
     <Content />

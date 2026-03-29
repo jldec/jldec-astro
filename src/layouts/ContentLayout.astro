@@ -10,9 +10,11 @@ interface Props {
   title?: string
   description?: string
   splashImage?: ImageMetadata
+  prefetchLinks?: string[]
+  preloadImages?: string[]
 }
 
-const { title, description, splashImage } = Astro.props
+const { title, description, splashImage, prefetchLinks, preloadImages } = Astro.props
 ---
 
 <html lang="en">
@@ -21,6 +23,8 @@ const { title, description, splashImage } = Astro.props
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="favicon.jpg" />
     <Metadata title={title} description={description} image={splashImage} />
+    {prefetchLinks?.map((href) => <link rel="prefetch" href={href} />)}
+    {preloadImages?.map((href) => <link rel="preload" as="image" href={href} />)}
     <ClientRouter />
   </head>
   <body>

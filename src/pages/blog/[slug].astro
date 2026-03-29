@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content'
+import { getImage } from 'astro:assets'
 import ContentLayout from '../../layouts/ContentLayout.astro'
 import ChevronUpIcon from '../../components/icons/ChevronUpIcon.astro'
 import ChevronDownIcon from '../../components/icons/ChevronDownIcon.astro'
@@ -35,9 +36,17 @@ function formatDate(date: Date | string | undefined) {
 }
 
 const longdate = formatDate(post.data.date)
+
+const nextSplashSrc = next?.data.splash?.image ?? next?.data.splashimage
+const nextSplashImage = nextSplashSrc ? (await getImage({ src: nextSplashSrc })).src : null
 ---
 
-<ContentLayout title={post.data.title} splashImage={splashImage}>
+<ContentLayout
+  title={post.data.title}
+  splashImage={splashImage}
+  prefetchLinks={[next && `/blog/${next.id}`, prev && `/blog/${prev.id}`].filter(Boolean) as string[]}
+  preloadImages={nextSplashImage ? [nextSplashImage] : []}
+>
   <p class="flex mb-4">
     <span class="grow">{longdate}</span>
     <a class="px-1.5 text-gray-400 hover:text-orange-500" href="/blog">

@@ -7,7 +7,7 @@ const blogIndex = allBlog.find((p) => p.id === 'index')
 const splashImage = blogIndex?.data.splash?.image
 
 const allPosts = allBlog.filter(({ id, data }) => {
-  return id !== 'index' && !data.draft
+  return id !== 'index' && (import.meta.env.PROD ? data.draft !== true : true)
 })
 
 const sortedPosts = allPosts

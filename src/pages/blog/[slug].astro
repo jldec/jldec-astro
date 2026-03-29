@@ -7,7 +7,7 @@ import ChevronDownIcon from '../../components/icons/ChevronDownIcon.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ id, data }) => {
-    return id !== 'index' && !data.draft
+    return id !== 'index' && (import.meta.env.PROD ? data.draft !== true : true)
   })
 
   const sorted = posts

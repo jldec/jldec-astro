@@ -4,6 +4,7 @@ date: 2025-05-22
 layout: BlogPostLayout
 splash:
   image: images/boston.webp
+draft: true
 ---
 
 # TypeScript and JavaScript keywords

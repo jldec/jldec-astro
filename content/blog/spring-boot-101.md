@@ -1,7 +1,7 @@
 ---
 title: Spring Boot 101
 splash:
-  image: /images/boot1.jpg
+  image: images/boot1.jpg
 date: 2017-06-28
 layout: BlogPostLayout
 excerpt: Spring Beans are magic - but what's behind them and why are they called beans?
@@ -29,7 +29,7 @@ Spring would read some environment-specific XML at startup and create instances 
 
 And those instances were... _**Beans**_, something like this:
 
-![ApplicationContext.getBean()](/images/boot1b.jpg)
+![ApplicationContext.getBean()](images/boot1b.jpg)
 
 ## Now there are @Annotations
 
@@ -61,7 +61,7 @@ Now that [_configuration scanning_](https://docs.spring.io/spring-boot/docs/curr
 
 By including a starter in the dependencies of your Boot App, you are telling Spring to scan for configuration classes inside that starter, which results in the automatic creation of the **Beans** for that starter.
 
-![Initializr injection](/images/boot7.jpg)
+![Initializr injection](images/boot7.jpg)
 
 > Easy!  
 > 🍋🍋

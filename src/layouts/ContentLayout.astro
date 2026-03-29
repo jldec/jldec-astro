@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions'
+import type { ImageMetadata } from 'astro'
 import '../styles/global.css'
 import Menu from '../components/Menu.astro'
 import Metadata from '../components/Metadata.astro'
@@ -8,7 +9,7 @@ import SplashImage from '../components/SplashImage.astro'
 interface Props {
   title?: string
   description?: string
-  splashImage?: string
+  splashImage?: ImageMetadata
 }
 
 const { title, description, splashImage } = Astro.props
@@ -18,7 +19,7 @@ const { title, description, splashImage } = Astro.props
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/images/favicon.jpg" />
+    <link rel="icon" href="favicon.jpg" />
     <Metadata title={title} description={description} image={splashImage} />
     <ClientRouter />
   </head>

@@ -1,8 +1,10 @@
 ---
+import type { ImageMetadata } from 'astro'
+
 interface Props {
   title?: string
   description?: string
-  image?: string
+  image?: ImageMetadata
 }
 
 const siteurl = 'https://jldec.me'
@@ -10,7 +12,7 @@ const twitter = '@jldec'
 
 const { title = 'Jürgen Leschner', description = title, image } = Astro.props
 const url = siteurl + Astro.url.pathname.replace(/\.html$/, '')
-const imageUrl = image ? siteurl + image : undefined
+const imageUrl = image ? siteurl + image.src : undefined
 ---
 
 <title>{title}</title>

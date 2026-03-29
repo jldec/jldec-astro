@@ -2,7 +2,7 @@
 title: Building a mimimal static site with Cloudflare Workers
 layout: BlogPostLayout
 splash:
-  image: /images/minimal-static-site.jldec.workers.dev.webp
+  image: images/minimal-static-site.jldec.workers.dev.webp
 date: 2024-09-27
 ---
 # Building a minimal static site with Cloudflare Workers

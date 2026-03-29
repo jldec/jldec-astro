@@ -1,7 +1,7 @@
 ---
 title: Using AI to Sync GitHub PRs with a Google Sheet
 splash:
-  image: /images/pond1.webp
+  image: images/pond1.webp
 date: 2025-09-21
 layout: BlogPostLayout
 excerpt: |
@@ -13,7 +13,7 @@ This is a case study of using shell scripts and a Google Apps script to sync Git
 Code and installation instructions can be found in this GitHub [repo](https://github.com/jldec/google-sheet-pr-sync).
 
 The idea came from this [tweet thread](https://x.com/willccbb/status/1968371980484460953) by @willccbb.
-![Screenshot of tweet thread](/images/tweets2.webp)
+![Screenshot of tweet thread](images/tweets2.webp)
 
 ## Why?
 Even though the thread above asks for a no-code pure AI Chat solution, quickly building a minimal AI-coded solution felt like the right place to start, helping to identify integration details, and assessing the complexity of the task.

@@ -1,7 +1,7 @@
 ---
 title: It's early days for Agents
 splash:
-  image: /images/fall.webp
+  image: images/fall.webp
 date: 2025-10-13
 layout: BlogPostLayout
 excerpt: We're not there yet

@@ -3,7 +3,7 @@ title: Routing emails through a Cloudflare Worker
 date: 2024-10-16
 layout: BlogPostLayout
 splash:
-  image: /images/red-flower.webp
+  image: images/red-flower.webp
 ---
 
 # Routing emails through a Cloudflare Worker
@@ -23,19 +23,19 @@ _Oct 27, 2024:_ Added POST handler which sends email, [updated](https://github.c
 Go to `Websites` in your Cloudflare [dashboard](https://dash.cloudflare.com/zones) and select the domain for which you're enabling email (I'm using `jldec.fun`).
 
 Look for `Email > Email Routing` and click the `Get started` button.
-![Screenshot of Email Routing page in the Cloudflare Dashboard](/images/cf-email-dashboard.webp)
+![Screenshot of Email Routing page in the Cloudflare Dashboard](images/cf-email-dashboard.webp)
 
 Provide a new address for receiving, and a destination to forward to.
 
-![Screenshot of Email Routing Getting Started](/images/cf-email-forward-address.webp)
+![Screenshot of Email Routing Getting Started](images/cf-email-forward-address.webp)
 
 After verifying the forwarding address, confirm the DNS changes.
 
-![Screenshot of Email DNS configuration](/images/cf-email-dns.webp)
+![Screenshot of Email DNS configuration](images/cf-email-dns.webp)
 
 Once the DNS changes are done, your first routing rules will take effect.
 
-![Screenshot of Email Routing Rules](/images/cf-email-routing-rules.webp)
+![Screenshot of Email Routing Rules](images/cf-email-routing-rules.webp)
 
 ## 2. Setup an email Worker
 
@@ -43,27 +43,27 @@ In this step we will add a worker, triggered by incoming email messages.
 
 Go to the `Email Workers` tab, and cick the `Create` button.`
 
-![Screenshot of the Email Workers tab](/images/cf-email-workers-create.webp)
+![Screenshot of the Email Workers tab](images/cf-email-workers-create.webp)
 
 Choose the `Allowlist senders` starter.
 
-![Screenshot of Email Workers starters](/images/cf-email-workers-create-templates.webp)
+![Screenshot of Email Workers starters](images/cf-email-workers-create-templates.webp)
 
 In the online editor, fix the code to suit your needs, then `Save and Deploy`.
 
-![Screenshot of Email Workers editor](/images/cf-email-workers-create-edit.webp)
+![Screenshot of Email Workers editor](images/cf-email-workers-create-edit.webp)
 
 Create a custom email address for the worker to receive emails.
 
-![Screenshot of Email Workers custom address](/images/cf-email-worker-address.webp)
+![Screenshot of Email Workers custom address](images/cf-email-worker-address.webp)
 
 Send a test email to the new worker email address.
 
-![Screenshot of Email Workers test email](/images/cf-email-test-email.webp)
+![Screenshot of Email Workers test email](images/cf-email-test-email.webp)
 
 You should see the `Live` worker logs in the dashboard for the newly-deployed worker, under `Workers & Pages` in your account. Start the log stream before sending the email.
 
-![Screenshot of Email Workers real time logs](/images/cf-email-worker-real-time-logs.webp)
+![Screenshot of Email Workers real time logs](images/cf-email-worker-real-time-logs.webp)
 
 ## 3. Deploy the Worker with Wrangler
 
@@ -156,7 +156,7 @@ export default {
 
 Here are the persisted logs in the Cloudflare dashboard. 🎉
 
-![Screenshot of Email Workers logs](/images/cf-email-worker-persisted-logs.webp)
+![Screenshot of Email Workers logs](images/cf-email-worker-persisted-logs.webp)
 
 > Tip: If you use gmail to test forwarding, I suggest using one account to send, and a different account to receive the forwarded emails . Using the same account (even with an alias) has not worked for me.
 
@@ -210,6 +210,6 @@ Test with a curl request and look for the email in your inbox.
 $ curl https://my-email-worker.jldec.workers.dev/ -d 'hello worker'
 OK
 ```
-![Screenshot of email sent from worker](/images/cf-email-worker-inbox.webp)
+![Screenshot of email sent from worker](images/cf-email-worker-inbox.webp)
 
 > 💌 You've got mail.

@@ -5,7 +5,7 @@ layout: BlogPostLayout
 ---
 
 # AI chat with Cloudflare Durable Objects
-![Architecture diagram showing chat worker durable object with AI and content owner and reader users](/images/chat-worker-durable=object.webp)
+![Architecture diagram showing chat worker durable object with AI and content owner and reader users](images/chat-worker-durable=object.webp)
 
 ### Content owners (editors)
 - Use regular WYSIWYG editor controls to edit page content.

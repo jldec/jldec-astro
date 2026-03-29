@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 import ContentLayout from '../../layouts/ContentLayout.astro'
+import bridgeImage from '../../../content/blog/images/bridge.jpg'
 
 const allPosts = await getCollection('blog', ({ id, data }) => {
   return id !== 'index' && !data.draft
@@ -13,7 +14,7 @@ const sortedPosts = allPosts
 
 <ContentLayout
   title="Jürgen Leschner - Writings"
-  splashImage="/images/bridge.jpg"
+  splashImage={bridgeImage}
 >
   <div class="prose max-w-none">
     <h1>Writings</h1>

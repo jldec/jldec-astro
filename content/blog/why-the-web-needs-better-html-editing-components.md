@@ -1,7 +1,7 @@
 ---
 title: Why the Web needs better HTML editing components
 splash:
-  image: /images/bridge.jpg
+  image: images/bridge.jpg
 date: 2015-08-13
 layout: BlogPostLayout
 excerpt: |

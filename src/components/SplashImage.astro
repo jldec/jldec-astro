@@ -1,9 +1,12 @@
 ---
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+
 interface Props {
-  src: string
+  src: ImageMetadata
 }
 
 const { src } = Astro.props
 ---
 
-<img id="splashimage" src={src} class="h-42 w-full my-6 object-cover cursor-default rounded" alt="splash image" />
+<Image id="splashimage" src={src} alt="splash image" loading="eager" fetchpriority="high" class="h-42 w-full my-6 object-cover cursor-default rounded" />

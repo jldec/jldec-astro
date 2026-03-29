@@ -1,7 +1,7 @@
 ---
 title: Cloudflare Containers Quickstart
 splash:
-  image: /images/big-sunset-dublin.webp
+  image: images/big-sunset-dublin.webp
 date: 2025-11-10
 layout: BlogPostLayout
 excerpt: Quick intro to Cloudflare Containers and how they work
@@ -11,7 +11,7 @@ excerpt: Quick intro to Cloudflare Containers and how they work
 
 You can now use [Cloudflare Containers](https://developers.cloudflare.com/containers/) (Beta) to run processes which require a [full](https://developers.cloudflare.com/containers/pricing/#instance-types) Linux environment including a filesystem.
 
-![Diagram showing image build, workers, durable objects and container instances.](/images/containers3.webp)
+![Diagram showing image build, workers, durable objects and container instances.](images/containers3.webp)
 
 ## How it works.
 
@@ -27,7 +27,7 @@ You can now use [Cloudflare Containers](https://developers.cloudflare.com/contai
 
 The example in [github.com/jldec/container-demo-terminal](https://github.com/jldec/container-demo-terminal) provides a minimal implementation of the flow described above.
 
-![Flow diagram from user -> worker -> durable object -> container](/images/container-demo-terminal.webp)
+![Flow diagram from user -> worker -> durable object -> container](images/container-demo-terminal.webp)
 
 - The [`Dockerfile`](https://github.com/jldec/container-demo-terminal/blob/main/Dockerfile#L5) adds a web-based terminal called tty2web to the image.
 
@@ -37,11 +37,11 @@ The example in [github.com/jldec/container-demo-terminal](https://github.com/jld
 
 The worker is deployed at https://container-demo-terminal.jldec.workers.dev. Visitors interact with a bash shell in the container over a websocket. This URL is protected with Cloudflare Access.
 
-![Screenshot of terminal running top in the container](/images/tty.webp)
+![Screenshot of terminal running top in the container](images/tty.webp)
 
 #### Cloudflare's dashboard provides nice observability.
 
-![Cloudflare Container dashboard](/images/container-dashboard.webp)
+![Cloudflare Container dashboard](images/container-dashboard.webp)
 
 ## Sandboxes FTW
 

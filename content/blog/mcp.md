@@ -3,7 +3,7 @@ date: 2025-03-10
 title: Model Context Protocol (MCP)
 layout: BlogPostLayout
 splash:
-  image: /images/courthouse.webp
+  image: images/courthouse.webp
 ---
 
 # Model Context Protocol (MCP)
@@ -21,7 +21,7 @@ What follows is very a quick overview of MCP. For deeper dives, I suggest:
 6. Example [MCP servers](https://github.com/modelcontextprotocol/servers)
 7. Swyx's [spicy take](https://www.latent.space/p/why-mcp-won)
 
-![MCP slide from the AI engineering summit https://www.youtube.com/watch?v=kQmXtrmQ5Zg](/images/mcp.webp)
+![MCP slide from the AI engineering summit https://www.youtube.com/watch?v=kQmXtrmQ5Zg](images/mcp.webp)
 
 ### How it works
 
@@ -44,7 +44,7 @@ Talking to your own tools feels like magic.
 
 Using MCP, AI appplications (clients) can connect to tools (servers) without custom integration.
 
-![Screenshot of chat with Claude to inspect the local filesystem](/images/claude-magic.webp)
+![Screenshot of chat with Claude to inspect the local filesystem](images/claude-magic.webp)
 
 [Here](https://www.youtube.com/watch?v=vGajZpl_9yA) is another example from Cloudflare.
 
@@ -69,7 +69,7 @@ The buzz is real, but it's early days and AI agent platforms are just getting st
 
 The way Claude Desktop spawns servers in subprocesses has resulted in a few [pitfalls](https://github.com/modelcontextprotocol/servers/issues/436#issuecomment-2564638983). I ran into this myself after configuring the filesystem server as described in the [quickstart](https://modelcontextprotocol.io/quickstart/user#2-add-the-filesystem-mcp-server).
 
-![Screenshot of Claude errors](/images/claude-errors.webp)
+![Screenshot of Claude errors](images/claude-errors.webp)
 
 The error stems from differences in the PATH when Claude Desktop spawns server subprocesses. One fix is to use absolute paths in `~/Library/Application Support/Claude/claude_desktop_config.json` on MacOS. E.g.
 

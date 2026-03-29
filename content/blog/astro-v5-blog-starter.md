@@ -3,7 +3,7 @@ title: "Astro v5 Blog starter"
 date: 2024-12-27
 layout: BlogPostLayout
 splash:
-  image: /images/big-ben.webp
+  image: images/big-ben.webp
 ---
 
 # Astro v5 blog starter
@@ -15,10 +15,10 @@ With just a minimal amount of boilerplate, Astro will validate markdown frontmat
 > https://astro-v5-blog-starter.jldec.me/blog/first-post
 
 ### Markdown
-![screenshot of blog post markdown](/images/astro-starter-markdown.webp)
+![screenshot of blog post markdown](images/astro-starter-markdown.webp)
 
 ### HTML
-![screenshot of blog post HTML](/images/astro-starter-html.webp)
+![screenshot of blog post HTML](images/astro-starter-html.webp)
 
 ## Starter Repo
 Here is the result of extracting these key features into a new blog starter. The repo does not include a lot of design - just the configuration and a minimal amount of code.

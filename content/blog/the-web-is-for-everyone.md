@@ -2,7 +2,7 @@
 title: The Web is for Everyone
 author: Jürgen Leschner
 splash:
-  image: /images/the-web-is-for-everyone.webp
+  image: images/the-web-is-for-everyone.webp
 date: 2024-01-05
 layout: BlogPostLayout
 excerpt: |

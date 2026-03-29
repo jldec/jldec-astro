@@ -3,7 +3,7 @@ title: "TypeScript and JavaScript keywords"
 date: 2025-05-22
 layout: BlogPostLayout
 splash:
-  image: /images/boston.webp
+  image: images/boston.webp
 ---
 
 # TypeScript and JavaScript keywords

@@ -5,7 +5,7 @@ layout: BlogPostLayout
 ---
 
 # On-demand rendering with Cloudflare Workers
-![Architecture diagram showing render workers and route handler workers](/images/render-workers.webp)
+![Architecture diagram showing render workers and route handler workers](images/render-workers.webp)
 
 ### Content owners (bloggers)
 - Register and configure their CMS and theme.

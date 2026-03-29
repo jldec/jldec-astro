@@ -11,6 +11,9 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
+  image: {
+    layout: 'constrained'
+  },
   markdown: {
     shikiConfig: {
       theme: 'none'

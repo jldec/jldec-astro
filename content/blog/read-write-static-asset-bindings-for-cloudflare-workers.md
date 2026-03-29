@@ -1,7 +1,7 @@
 ---
 title: Read-write Static Assets bindings for Cloudflare Workers
 date: 2024-10-03
-splashimage: /images/berries.webp
+splashimage: images/berries.webp
 layout: BlogPostLayout
 ---
 

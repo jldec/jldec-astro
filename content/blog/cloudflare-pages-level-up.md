@@ -3,7 +3,7 @@ title: Vision for Cloudflare Workers Assets bindings
 date: 2024-10-24
 layout: BlogPostLayout
 splash:
-  image: /images/chimneys.webp
+  image: images/chimneys.webp
 ---
 
 #  Vision for Workers Assets bindings

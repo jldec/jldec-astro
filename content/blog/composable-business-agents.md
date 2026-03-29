@@ -3,7 +3,7 @@ title: Composable Business Agents
 date: 2025-03-09
 layout: BlogPostLayout
 splash:
-  image: /images/sloan.webp
+  image: images/sloan.webp
 ---
 
 # Composable Business Agents
@@ -27,4 +27,4 @@ Even though these capabilities are not all available today, the technology is im
 
 **Whiteboard March 7, 2025.**
 
-![whiteboard image with human owner, AI, conversation surface, history, public and private views, persistent data, tools-code, apis.](/images/whitebaord-venture-lane.webp) 
+![whiteboard image with human owner, AI, conversation surface, history, public and private views, persistent data, tools-code, apis.](images/whitebaord-venture-lane.webp) 

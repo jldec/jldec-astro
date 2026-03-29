@@ -1,7 +1,7 @@
 ---
 title: A Web for Everyone
 splash:
-  image: /images/oldstreet.jpg
+  image: images/oldstreet.jpg
 date: 2019-08-08
 layout: BlogPostLayout
 excerpt: Creating an open Web where anyone can put anything on the Internet is the future.

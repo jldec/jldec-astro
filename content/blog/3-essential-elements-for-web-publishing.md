@@ -3,7 +3,7 @@ title: Three essential elements for Web publishing
 date: 2025-01-13
 layout: BlogPostLayout
 splash:
-  image: /images/red-white-flower.jpg
+  image: images/red-white-flower.jpg
 ---
 
 # 3 essential elements for Web publishing

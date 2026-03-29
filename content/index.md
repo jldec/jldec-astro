@@ -3,9 +3,8 @@ title: Jürgen Leschner
 siteurl: https://jldec.me
 description: Co-founder & product engineer 🌳 The Web is for everyone ❤️
 twitter: "@jldec"
-favicon: /images/favicon.jpg
 splash:
-  # image: /images/moi.webp
+  # image: ./blog/images/moi.webp
 navlinks:
   - text: Home
     href: /

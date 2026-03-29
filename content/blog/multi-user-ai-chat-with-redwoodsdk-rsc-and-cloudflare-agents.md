@@ -2,7 +2,7 @@
 title: Multi-user AI chat with RedwoodSDK RSC and Cloudflare agents
 date: 2025-06-10
 splash:
-  image: /images/flowzer.webp
+  image: images/flowzer.webp
 layout: BlogPostLayout
 ---
 # Multi-user AI chat with RedwoodSDK RSC and Cloudflare agents

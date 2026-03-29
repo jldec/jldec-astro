@@ -7,9 +7,11 @@ const blog = defineCollection({
     title: z.string().optional(),
     date: z.coerce.date().optional(),
     layout: z.string().optional(),
-    splash: z.object({
-      image: z.string().optional()
-    }).optional(),
+    splash: z
+      .object({
+        image: z.string().optional()
+      })
+      .optional(),
     splashimage: z.string().optional(),
     excerpt: z.string().optional(),
     draft: z.boolean().optional(),
@@ -22,26 +24,39 @@ const blog = defineCollection({
 
 const pages = defineCollection({
   loader: glob({ pattern: '*.md', base: './content' }),
-  schema: z.object({
-    title: z.string().optional(),
-    siteurl: z.string().optional(),
-    description: z.string().optional(),
-    twitter: z.string().optional(),
-    favicon: z.string().optional(),
-    splash: z.object({
-      image: z.string().optional()
-    }).nullable().optional(),
-    navlinks: z.array(z.object({
-      text: z.string(),
-      href: z.string(),
-      icon: z.string().optional()
-    })).optional(),
-    sociallinks: z.array(z.object({
-      text: z.string(),
-      href: z.string(),
-      icon: z.string().optional()
-    })).optional()
-  }).passthrough()
+  schema: z
+    .object({
+      title: z.string().optional(),
+      siteurl: z.string().optional(),
+      description: z.string().optional(),
+      twitter: z.string().optional(),
+      favicon: z.string().optional(),
+      splash: z
+        .object({
+          image: z.string().optional()
+        })
+        .nullable()
+        .optional(),
+      navlinks: z
+        .array(
+          z.object({
+            text: z.string(),
+            href: z.string(),
+            icon: z.string().optional()
+          })
+        )
+        .optional(),
+      sociallinks: z
+        .array(
+          z.object({
+            text: z.string(),
+            href: z.string(),
+            icon: z.string().optional()
+          })
+        )
+        .optional()
+    })
+    .passthrough()
 })
 
 export const collections = { blog, pages }

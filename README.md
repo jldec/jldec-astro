@@ -1,6 +1,6 @@
 # jldec-astro
 
-Static website built with [Astro v6](https://astro.build/) and [Tailwind CSS v4](https://tailwindcss.com/).
+Static website built with [Astro v6](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
 
 ## Scripts
 
@@ -16,7 +16,6 @@ pnpm preview   # Preview the build locally
 content/            # Markdown content
   blog/             # Blog posts
   index.md          # Homepage
-  resume.md         # Resume page
 public/
   images/           # Static images
   js/               # Client-side scripts

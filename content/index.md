@@ -51,6 +51,6 @@ Currently helping build a better Internet at Cloudflare. Shipped software at Git
 
 ---
 
-Static website built with [Astro v6](https://astro.build/) and [Tailwind CSS v4](https://tailwindcss.com/).
+Static website built with [Astro v6](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
 
 _Layout inspired by [The Monospace Web](https://wickstrom.tech/2024-09-26-how-i-built-the-monospace-web.html)_ 🙏

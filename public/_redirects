@@ -1,27 +1,27 @@
 /blog/using-ai-to-sync-github-prs-with-google-sheets /blog/syncing-github-prs-with-a-google-sheet
-/a-web-for-everyone /blog/a-web-for-everyone 308
-/calling-rust-from-a-cloudflare-worker /blog/calling-rust-from-a-cloudflare-worker 308
-/extracting-an-esm-module-from-a-deno-script /blog/extracting-an-esm-module-from-a-deno-script 308
-/first-impressions-of-the-new-github-projects-beta /blog/first-impressions-of-the-new-github-projects-beta 308
-/first-steps-using-cloudflare-pages /blog/first-steps-using-cloudflare-pages 308
-/forays-from-node-to-rust /blog/forays-from-node-to-rust 308
-/fun-with-vercel /blog/fun-with-vercel 308
-/getting-started-with-deno /blog/getting-started-with-deno 308
-/getting-started-with-go-part-2-pointers /blog/getting-started-with-go-part-2-pointers 308
-/getting-started-with-go-part-3-goroutines-and-channels /blog/getting-started-with-go-part-3-goroutines-and-channels 308
-/getting-started-with-go /blog/getting-started-with-go 308
-/getting-started-with-python-packaging /blog/getting-started-with-python-packaging 308
-/github-actions-101 /blog/github-actions-101 308
-/migrating-from-cjs-to-esm /blog/migrating-from-cjs-to-esm 308
-/preventing-concurrent-github-actions /blog/preventing-concurrent-github-actions 308
-/running-a-compiled-deno-script-in-a-github-action /blog/running-a-compiled-deno-script-in-a-github-action 308
-/spring-boot-101 /blog/spring-boot-101 308
-/using-gitpod-to-create-a-pr /blog/using-gitpod-to-create-a-pr 308
-/what-is-git-lfs /blog/what-is-git-lfs 308
-/why-serverless-at-the-edge /blog/why-serverless-at-the-edge 308
-/why-the-web-needs-better-html-editing-components /blog/why-the-web-needs-better-html-editing-components 308
-/about / 308
-/blog/ux-beats-ex-editor-experience-beats-dx-designer-experience /blog/editor-experience 308
-/writings /blog 308
-/blog/editor-experience /blog/3-essential-elements-for-web-publishing 308
-/blog/grok-mcp /blog/mcp 308
+/a-web-for-everyone /blog/a-web-for-everyone
+/calling-rust-from-a-cloudflare-worker /blog/calling-rust-from-a-cloudflare-worker
+/extracting-an-esm-module-from-a-deno-script /blog/extracting-an-esm-module-from-a-deno-script
+/first-impressions-of-the-new-github-projects-beta /blog/first-impressions-of-the-new-github-projects-beta
+/first-steps-using-cloudflare-pages /blog/first-steps-using-cloudflare-pages
+/forays-from-node-to-rust /blog/forays-from-node-to-rust
+/fun-with-vercel /blog/fun-with-vercel
+/getting-started-with-deno /blog/getting-started-with-deno
+/getting-started-with-go-part-2-pointers /blog/getting-started-with-go-part-2-pointers
+/getting-started-with-go-part-3-goroutines-and-channels /blog/getting-started-with-go-part-3-goroutines-and-channels
+/getting-started-with-go /blog/getting-started-with-go
+/getting-started-with-python-packaging /blog/getting-started-with-python-packaging
+/github-actions-101 /blog/github-actions-101
+/migrating-from-cjs-to-esm /blog/migrating-from-cjs-to-esm
+/preventing-concurrent-github-actions /blog/preventing-concurrent-github-actions
+/running-a-compiled-deno-script-in-a-github-action /blog/running-a-compiled-deno-script-in-a-github-action
+/spring-boot-101 /blog/spring-boot-101
+/using-gitpod-to-create-a-pr /blog/using-gitpod-to-create-a-pr
+/what-is-git-lfs /blog/what-is-git-lfs
+/why-serverless-at-the-edge /blog/why-serverless-at-the-edge
+/why-the-web-needs-better-html-editing-components /blog/why-the-web-needs-better-html-editing-components
+/about /
+/blog/ux-beats-ex-editor-experience-beats-dx-designer-experience /blog/editor-experience
+/writings /blog
+/blog/editor-experience /blog/3-essential-elements-for-web-publishing
+/blog/grok-mcp /blog/mcp

@@ -1,0 +1,9 @@
+{
+  // Cloudflare Workers configuration
+  "name": "jldec-astro",
+  
+  // Serve static assets from the dist directory
+  "assets": {
+    "directory": "dist"
+  }
+}

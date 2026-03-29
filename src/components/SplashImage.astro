@@ -1,0 +1,9 @@
+---
+interface Props {
+  src: string
+}
+
+const { src } = Astro.props
+---
+
+<img id="splashimage" src={src} class="h-42 w-full my-6 object-cover cursor-default rounded" alt="splash image" />

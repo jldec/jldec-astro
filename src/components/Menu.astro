@@ -1,0 +1,29 @@
+---
+import HomeIcon from './icons/HomeIcon.astro'
+import TwitterIcon from './icons/TwitterIcon.astro'
+import GitHubIcon from './icons/GitHubIcon.astro'
+import LinkedinIcon from './icons/LinkedinIcon.astro'
+import EmailIcon from './icons/EmailIcon.astro'
+---
+
+<nav class="flex flex-wrap mb-4">
+  <a class="px-1.5 hover:text-orange-500 transition-colors duration-200 ease-in-out hover:underline" href="/" aria-label="Home">
+    <HomeIcon class="h-5" />
+  </a>
+  <a class="px-1.5 hover:text-orange-500 transition-colors duration-200 ease-in-out hover:underline" href="/blog" aria-label="Writings">
+    Writings
+  </a>
+  <span class="grow"></span>
+  <a class="px-1.5 hover:text-orange-500 transition-colors duration-200 ease-in-out hover:underline" href="https://x.com/jldec" aria-label="X">
+    <TwitterIcon class="h-5" />
+  </a>
+  <a class="px-1.5 hover:text-orange-500 transition-colors duration-200 ease-in-out hover:underline" href="https://github.com/jldec" aria-label="GitHub">
+    <GitHubIcon class="h-5" />
+  </a>
+  <a class="px-1.5 hover:text-orange-500 transition-colors duration-200 ease-in-out hover:underline" href="https://www.linkedin.com/in/jldec/" aria-label="Linkedin">
+    <LinkedinIcon class="h-5" />
+  </a>
+  <a class="px-1.5 hover:text-orange-500 transition-colors duration-200 ease-in-out hover:underline" href="mailto:jurgen@jldec.me" aria-label="Email">
+    <EmailIcon class="h-5" />
+  </a>
+</nav>

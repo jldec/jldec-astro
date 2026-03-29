@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content'
+import ContentLayout from '../../layouts/ContentLayout.astro'
+
+const allPosts = await getCollection('blog', ({ id, data }) => {
+  return id !== 'index' && !data.draft
+})
+
+const sortedPosts = allPosts
+  .filter((p) => p.data.date)
+  .sort((a, b) => new Date(b.data.date!).getTime() - new Date(a.data.date!).getTime())
+---
+
+<ContentLayout
+  title="Jürgen Leschner - Writings"
+  splashImage="/images/bridge.jpg"
+>
+  <div class="prose max-w-none">
+    <h1>Writings</h1>
+  </div>
+  <div class="prose max-w-none mt-4">
+    <ul>
+      {sortedPosts.map((post) => {
+        const date = post.data.date
+          ? new Date(post.data.date).toISOString().slice(0, 10)
+          : ''
+        return (
+          <li class="leading-[1.1rem] pb-1">
+            <a
+              class="group flex items-end gap-4 no-underline border-b-[1.5px] border-b-transparent hover:border-b-current"
+              href={`/blog/${post.id}`}
+            >
+              <span class="grow">{post.data.title ?? post.id}</span>
+              <span class="hidden sm:block text-transparent group-hover:text-orange-500">
+                {date}
+              </span>
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  </div>
+</ContentLayout>

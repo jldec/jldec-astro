@@ -1,0 +1,16 @@
+---
+import { getCollection, render } from 'astro:content'
+import ContentLayout from '../layouts/ContentLayout.astro'
+
+const pages = await getCollection('pages')
+const resumePage = pages.find((p) => p.id === 'resume')
+if (!resumePage) throw new Error('resume.md not found')
+
+const { Content } = await render(resumePage)
+---
+
+<ContentLayout title={resumePage.data.title ?? 'Jürgen Leschner'}>
+  <div class="prose max-w-none">
+    <Content />
+  </div>
+</ContentLayout>

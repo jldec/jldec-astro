@@ -1,0 +1,21 @@
+---
+interface Props {
+  title?: string
+  description?: string
+}
+
+const siteurl = 'https://jldec.me'
+const twitter = '@jldec'
+
+const { title = 'Jürgen Leschner', description = title } = Astro.props
+const url = siteurl + (Astro.url.pathname || '/')
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta property="og:description" content={description} />
+<meta property="og:title" content={title} />
+<link rel="canonical" href={url} />
+<meta property="og:url" content={url} />
+<meta name="twitter:site" content={twitter} />
+<meta name="twitter:creator" content={twitter} />

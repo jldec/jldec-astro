@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content'
+import ContentLayout from '../layouts/ContentLayout.astro'
+
+const pages = await getCollection('pages')
+const indexPage = pages.find((p) => p.id === 'index')
+if (!indexPage) throw new Error('index.md not found')
+
+const { Content } = await render(indexPage)
+---
+
+<ContentLayout
+  title="Jürgen Leschner"
+  description="Co-founder & product engineer 🌳 The Web is for everyone ❤️"
+>
+  <div class="prose max-w-none">
+    <Content />
+  </div>
+</ContentLayout>

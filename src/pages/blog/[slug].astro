@@ -1,0 +1,75 @@
+---
+import { getCollection, render } from 'astro:content'
+import ContentLayout from '../../layouts/ContentLayout.astro'
+import ChevronUpIcon from '../../components/icons/ChevronUpIcon.astro'
+import ChevronDownIcon from '../../components/icons/ChevronDownIcon.astro'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ id, data }) => {
+    return id !== 'index' && !data.draft
+  })
+
+  const sorted = posts
+    .filter((p) => p.data.date)
+    .sort((a, b) => new Date(b.data.date!).getTime() - new Date(a.data.date!).getTime())
+
+  return sorted.map((post, i) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      prev: i < sorted.length - 1 ? sorted[i + 1] : null,
+      next: i > 0 ? sorted[i - 1] : null
+    }
+  }))
+}
+
+const { post, prev, next } = Astro.props
+const { Content } = await render(post)
+
+const splashImage = post.data.splash?.image ?? post.data.splashimage
+
+function formatDate(date: Date | string | undefined) {
+  if (!date) return ''
+  const d = typeof date === 'string' ? new Date(date) : date
+  return new Intl.DateTimeFormat(undefined, { dateStyle: 'long' }).format(d)
+}
+
+const longdate = formatDate(post.data.date)
+---
+
+<ContentLayout title={post.data.title} splashImage={splashImage}>
+  <p class="flex mb-4">
+    <span class="grow">{longdate}</span>
+    <a class="px-1.5 text-gray-400 hover:text-orange-500" href="/blog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-[1.4rem]" role="img" aria-label="List Icon">
+          <path d="M3 12h.01"></path>
+          <path d="M3 18h.01"></path>
+          <path d="M3 6h.01"></path>
+          <path d="M8 12h13"></path>
+          <path d="M8 18h13"></path>
+          <path d="M8 6h13"></path>
+        </svg>
+    </a>
+    {next && (
+      <a
+        class="px-1.5 text-gray-400 hover:text-orange-500"
+        href={`/blog/${next.id}`}
+        title={`Next: ${next.data.title}`}
+      >
+        <ChevronUpIcon class="h-[1.4rem]" />
+      </a>
+    )}
+    {prev && (
+      <a
+        class="px-1.5 text-gray-400 hover:text-orange-500"
+        href={`/blog/${prev.id}`}
+        title={`Prev: ${prev.data.title}`}
+      >
+        <ChevronDownIcon class="h-[1.4rem]" />
+      </a>
+    )}
+  </p>
+  <div class="prose max-w-none">
+    <Content />
+  </div>
+</ContentLayout>

@@ -2,6 +2,7 @@
   "name": "jldec-astro",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
   "license": "MIT",
   "engines": {
     "node": ">=22.12.0"
@@ -16,8 +17,7 @@
     "ship": "astro build && wrangler deploy"
   },
   "dependencies": {
-    "astro": "^6.1.1",
-    "sharp": "^0.34.5"
+    "astro": "^6.1.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",

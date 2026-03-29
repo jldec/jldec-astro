@@ -11,9 +11,6 @@ importers:
       astro:
         specifier: ^6.1.1
         version: 6.1.1(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.0)
-      sharp:
-        specifier: ^0.34.5
-        version: 0.34.5
     devDependencies:
       '@tailwindcss/typography':
         specifier: ^0.5.19

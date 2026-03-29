@@ -26,18 +26,17 @@ const blog = defineCollection({
 const pages = defineCollection({
   loader: glob({ pattern: '*.md', base: './content' }),
   schema: ({ image }) =>
-    z
-      .object({
-        title: z.string().optional(),
-        siteurl: z.string().optional(),
-        description: z.string().optional(),
-        twitter: z.string().optional(),
-        splash: z
-          .object({
-            image: image().optional()
-          })
-          .nullable()
-          .optional(),
+    z.object({
+      title: z.string().optional(),
+      siteurl: z.string().optional(),
+      description: z.string().optional(),
+      twitter: z.string().optional(),
+      splash: z
+        .object({
+          image: image().optional()
+        })
+        .nullable()
+        .optional(),
       navlinks: z
         .array(
           z.object({

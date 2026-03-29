@@ -11,7 +11,7 @@ excerpt: |
 
 # i18n with inlang
 
-Last week I had the [pleasure](the-web-is-for-everyone.md) of being at the Svelte Society London gettogether. The evening started with a talk about i18n by [@loris_sigrist](https://twitter.com/loris_sigrist) from [inlang](https://inlang.com/).
+Last week I had the [pleasure](the-web-is-for-everyone) of being at the Svelte Society London gettogether. The evening started with a talk about i18n by [@loris_sigrist](https://twitter.com/loris_sigrist) from [inlang](https://inlang.com/).
 
 I was impressed by the story of [paraglide-js](https://inlang.com/m/gerre34r/library-inlang-paraglideJs) which compiles translatable strings into tree-shakable javascript functions. This can improve both the developer experience, with IntelliSense, and the user experience, with reduced bundle sizes.
 

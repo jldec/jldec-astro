@@ -26,6 +26,7 @@ The following conventions were established during the port.
 - Keep URLs in content as simple as possible — no `.html` extensions, no trailing slashes.
 - `astro.config.mjs` uses `trailingSlash: 'never'` and `build.format: 'file'`.
 - Canonical URLs strip `.html` extensions.
+- `public/_redirects` maps old URLs from the previous site to their new `/blog/` paths.
 
 ## Prefetching and preloading
 
@@ -44,8 +45,20 @@ The following conventions were established during the port.
 - Set `draft: true` in frontmatter to mark a blog post as a draft.
 - Drafts are visible in dev mode but filtered out in production builds using `import.meta.env.PROD`.
 
+## Link checking
+
+- `check-links.js` validates internal markdown links and image references after build.
+- Run with `node check-links.js`. It's also wired up as `pnpm check-links`.
+
+## Caching
+
+- `public/_headers` sets Cloudflare cache headers.
+- Astro hashed assets (`/_astro/*`) are cached as immutable with a long max-age.
+- All other paths use `max-age=0` with `stale-while-revalidate=60`.
+
 ## Build and deploy
 
-- `sharp` is required as a dependency for build-time image optimization.
+- `sharp` is required as a dependency for build-time image optimization. `.npmrc` hoists sharp and uses `node-linker=hoisted`.
+- `image: {}` in `astro.config.mjs` relies on Astro defaults (no explicit `service` or `layout` override needed).
 - `compressHTML: false` is set to preserve readable HTML output.
 - Deployed as a static site on Cloudflare Workers (no adapter needed).

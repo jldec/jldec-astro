@@ -2,13 +2,15 @@
 interface Props {
   title?: string
   description?: string
+  image?: string
 }
 
 const siteurl = 'https://jldec.me'
 const twitter = '@jldec'
 
-const { title = 'Jürgen Leschner', description = title } = Astro.props
-const url = siteurl + (Astro.url.pathname || '/')
+const { title = 'Jürgen Leschner', description = title, image } = Astro.props
+const url = siteurl + Astro.url.pathname.replace(/\.html$/, '')
+const imageUrl = image ? siteurl + image : undefined
 ---
 
 <title>{title}</title>
@@ -19,3 +21,6 @@ const url = siteurl + (Astro.url.pathname || '/')
 <meta property="og:url" content={url} />
 <meta name="twitter:site" content={twitter} />
 <meta name="twitter:creator" content={twitter} />
+{imageUrl && <meta property="og:image" content={imageUrl} />}
+{imageUrl && <meta name="twitter:card" content="summary_large_image" />}
+{imageUrl && <meta name="twitter:image" content={imageUrl} />}

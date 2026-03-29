@@ -28,3 +28,5 @@ src/
   styles/           # Global CSS (Tailwind)
   content.config.ts # Content collection definitions
 ```
+
+See [AGENTS.md](AGENTS.md) for more details on conventions and configuration.

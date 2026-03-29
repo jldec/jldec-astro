@@ -39,6 +39,11 @@ The following conventions were established during the port.
 - Support both `splash.image` and `splashimage` frontmatter fields for backward compatibility.
 - Don't use `.passthrough()` on schemas — it hides inconsistencies.
 
+## Drafts
+
+- Set `draft: true` in frontmatter to mark a blog post as a draft.
+- Drafts are visible in dev mode but filtered out in production builds using `import.meta.env.PROD`.
+
 ## Build and deploy
 
 - `sharp` is required as a dependency for build-time image optimization.

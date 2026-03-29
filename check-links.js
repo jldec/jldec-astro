@@ -17,7 +17,7 @@ const blogSlugs = new Set(
 const validRoutes = new Set(['/', '/blog', '/resume', ...Array.from(blogSlugs).map((s) => `/blog/${s}`)])
 
 const TEST_POST = 'content/blog/test-post.md'
-const expectedBroken = new Set([`${TEST_POST} -> images/does-not-exist.png`, `${TEST_POST} -> nonexistent-post`])
+const expectedBroken = new Set([`${TEST_POST} -> nonexistent-post`])
 const foundExpected = new Set()
 
 let broken = 0

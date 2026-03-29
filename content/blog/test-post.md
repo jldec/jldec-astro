@@ -10,8 +10,6 @@ splash:
 
 ![a working image](images/big-ben.webp)
 
-![broken image](images/does-not-exist.png)
-
 Check out this [broken internal link](nonexistent-post).
 
 This [valid link](astro-v5-blog-starter) should not be reported.

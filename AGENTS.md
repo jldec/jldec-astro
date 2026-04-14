@@ -1,4 +1,6 @@
-# AGENTS.md — jldec-astro
+# AGENTS.md 
+
+## jldec-astro
 
 This site was ported from [RedwoodSDK (RSC)](https://github.com/jldec/jldec-website) to [Astro](https://astro.build/).
 The following conventions were established during the port.

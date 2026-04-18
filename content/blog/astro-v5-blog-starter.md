@@ -15,10 +15,81 @@ With just a minimal amount of boilerplate, Astro will validate markdown frontmat
 > https://astro-v5-blog-starter.jldec.me/blog/first-post
 
 ### Markdown
-![screenshot of blog post markdown](images/astro-starter-markdown.webp)
+```md
+---
+date: '2024-12-01'
+title: 'My First Blog Post'
+image:
+  src: '../images/birch-trees.webp'
+---
+
+## Markdown is
+
+- a lightweight markup language
+- for decorating plain text
+- with things like headings, lists, links, and blockquotes
+- making minimal assumptions about formatting.
+
+#### Here is an inline image:
+
+![sunset](../images/sunset-cambridge.jpg)
+```
 
 ### HTML
-![screenshot of blog post HTML](images/astro-starter-html.webp)
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="canonical"
+      href="https://astro-v5-blog-starter.jldec.me/blog/first-post.html"
+    />
+    <meta name="generator" content="Astro v5.8.2" />
+    <title>My First Blog Post</title>
+    <link rel="stylesheet" href="/_astro/_id_.DVOqKcUa.css" />
+  </head>
+  <body>
+    <img
+      src="/_astro/birch-trees.DrRha0ED_9bfrU.webp"
+      alt
+      width="2016"
+      height="955"
+      loading="lazy"
+      decoding="async"
+      class="w-full h-60 object-cover object-bottom"
+    />
+    <div
+      class="prose mx-auto"
+    >
+      <article>
+        <h1>My First Blog Post</h1>
+        <a href="/">&lt;&lt; Back</a>
+        <h2 id="markdown-is">Markdown is</h2>
+        <ul>
+          <li>a lightweight markup language</li>
+          <li>for decorating plain text</li>
+          <li>with things like headings, lists, links, and blockquotes</li>
+          <li>making minimal assumptions about formatting.</li>
+        </ul>
+        <h4 id="here-is-an-inline-image">Here is an inline image:</h4>
+        <p>
+          <img
+            alt="sunset"
+            width="1343"
+            height="683"
+            loading="lazy"
+            decoding="async"
+            src="/_astro/sunset-cambridge.7ZAluiBF_15WAVg.webp"
+          />
+        </p>
+     </article>
+    </div>
+  </body>
+</html>
+```
 
 ## Starter Repo
 Here is the result of extracting these key features into a new blog starter. The repo does not include a lot of design - just the configuration and a minimal amount of code.

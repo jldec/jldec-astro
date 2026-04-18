@@ -109,9 +109,10 @@ html {
 }
 
 .prose pre {
-  background-color: #222;
   color: #7f7;
   min-height: 70px;
+  border: solid 1.5px #f97316;
+  border-radius: 0.25rem; /* md */
 }
 
 .prose code::before {
@@ -126,7 +127,7 @@ html {
   font-style: normal;
   margin: 2rem auto;
   padding: 0 1rem;
-  border: solid 1.5px currentColor;
+  border: solid 1.5px #f97316;
   border-radius: 0.25rem; /* md */
 }
 

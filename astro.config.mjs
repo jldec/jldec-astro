@@ -14,7 +14,7 @@ export default defineConfig({
   image: {},
   markdown: {
     shikiConfig: {
-      theme: 'github-dark'
+      theme: 'github-light-default'
     }
   }
 })

@@ -10,20 +10,22 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro build && astro preview",
     "astro": "astro",
-    "check": "prettier --check . && node check-links.js",
+    "check": "astro check && prettier --check . && node check-links.js",
     "format": "prettier -w .",
     "ship": "astro build && wrangler deploy"
   },
   "dependencies": {
-    "astro": "^6.1.1"
+    "@astrojs/check": "^0.9.8",
+    "astro": "^6.1.8",
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.2",
     "tailwindcss": "^4.2.2",
-    "wrangler": "^4.78.0"
+    "wrangler": "^4.83.0"
   },
   "prettier": {
     "printWidth": 120,

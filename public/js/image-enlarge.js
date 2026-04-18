@@ -34,7 +34,8 @@ function createImageOverlay(popupImage) {
   closeButton.addEventListener('click', closeOverlay)
 
   const enlargedImg = popupImage.cloneNode()
-  enlargedImg.classList.remove('hidden')
+  // Remove classes that match SplashImage.astro to avoid letterboxing in enlarged view
+  enlargedImg.classList.remove('hidden', 'h-42', 'object-cover')
   enlargedImg.classList.add(
     'enlarged-image',
     'max-w-[96vw]',

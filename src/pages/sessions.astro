@@ -1,0 +1,172 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro'
+import { listStoredSessionSummaries } from '../session/client'
+
+export const prerender = false
+
+const initialPage = await listStoredSessionSummaries(null, 20)
+const initialSessions = initialPage.sessions
+const initialCursor = initialPage.nextCursor
+
+function formatTimestamp(value: number) {
+  const date = new Date(value)
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  const hour = String(date.getHours()).padStart(2, '0')
+  const minute = String(date.getMinutes()).padStart(2, '0')
+
+  return `${year}-${month}-${day} ${hour}:${minute}`
+}
+
+function formatSummary(updatedAt: number, city: string | null, userAgent: string | null) {
+  return [formatTimestamp(updatedAt), city, userAgent].filter(Boolean).join(' · ')
+}
+---
+
+<ContentLayout title="Sessions">
+  <section class="prose max-w-none">
+    <h1>Sessions</h1>
+    <p>Newest first. Open any row to fetch fresh JSON for that session.</p>
+
+    <div id="sessions-list">
+      {initialSessions.length === 0 && <p id="sessions-empty">No sessions found.</p>}
+      {initialSessions.map((session) => (
+        <details class="mb-3 rounded border border-orange-500/40 px-3 py-2" data-session-id={session.sessionId}>
+          <summary class="cursor-pointer">
+            <span>{formatSummary(session.updatedAt, session.city, session.userAgent)}</span>
+          </summary>
+          <pre class="mt-2 mb-1" data-role="session-json">Open to load...</pre>
+        </details>
+      ))}
+    </div>
+
+    <button id="sessions-more" class="button py-1 px-2" type="button" hidden={!initialCursor}>more...</button>
+  </section>
+
+  <script is:inline define:vars={{ initialCursor }}>
+    const list = document.getElementById('sessions-list')
+    const moreButton = document.getElementById('sessions-more')
+    const emptyMessage = document.getElementById('sessions-empty')
+    let cursor = initialCursor
+
+    function prettyJson(value) {
+      try {
+        return JSON.stringify(value, null, 2)
+      } catch {
+        return String(value)
+      }
+    }
+
+    async function refreshDetails(details) {
+      const sessionId = details.dataset.sessionId
+      const pre = details.querySelector('[data-role="session-json"]')
+
+      if (!sessionId || !pre) return
+
+      pre.textContent = 'Loading...'
+
+      try {
+        const response = await fetch(`/api/sessions/${encodeURIComponent(sessionId)}`)
+        if (!response.ok) throw new Error(`${response.status} ${response.statusText}`)
+
+        const payload = await response.json()
+        pre.textContent = prettyJson(payload.value)
+      } catch (error) {
+        pre.textContent = `Failed to load session: ${error instanceof Error ? error.message : 'Unknown error'}`
+      }
+    }
+
+    function attachDetails(details) {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          void refreshDetails(details)
+        }
+      })
+    }
+
+    function formatTimestamp(ts) {
+      const date = new Date(ts)
+      const year = date.getFullYear()
+      const month = String(date.getMonth() + 1).padStart(2, '0')
+      const day = String(date.getDate()).padStart(2, '0')
+      const hour = String(date.getHours()).padStart(2, '0')
+      const minute = String(date.getMinutes()).padStart(2, '0')
+
+      return `${year}-${month}-${day} ${hour}:${minute}`
+    }
+
+    function formatSummary(session) {
+      return [formatTimestamp(session.updatedAt), session.city, session.userAgent].filter(Boolean).join(' · ')
+    }
+
+    function createSessionDetails(session) {
+      const details = document.createElement('details')
+      details.className = 'mb-3 rounded border border-orange-500/40 px-3 py-2'
+      details.dataset.sessionId = session.sessionId
+
+      const summary = document.createElement('summary')
+      summary.className = 'cursor-pointer'
+
+      const text = document.createElement('span')
+      text.textContent = formatSummary(session)
+
+      summary.append(text)
+
+      const pre = document.createElement('pre')
+      pre.className = 'mt-2 mb-1'
+      pre.setAttribute('data-role', 'session-json')
+      pre.textContent = 'Open to load...'
+
+      details.append(summary, pre)
+      attachDetails(details)
+      return details
+    }
+
+    async function loadMore() {
+      if (!cursor || !moreButton || !list) return
+
+      moreButton.disabled = true
+      moreButton.textContent = 'loading...'
+
+      try {
+        const query = new URLSearchParams({ limit: '20' })
+        query.set('cursor', cursor)
+
+        const response = await fetch(`/api/sessions/ids?${query.toString()}`)
+        if (!response.ok) throw new Error(`${response.status} ${response.statusText}`)
+
+        const payload = await response.json()
+        const sessions = Array.isArray(payload.sessions) ? payload.sessions : []
+
+        if (sessions.length > 0 && emptyMessage) {
+          emptyMessage.remove()
+        }
+
+        sessions.forEach((session) => list.append(createSessionDetails(session)))
+
+        cursor = typeof payload.nextCursor === 'string' && payload.nextCursor.length > 0 ? payload.nextCursor : null
+        if (!cursor) {
+          moreButton.hidden = true
+        }
+      } catch (error) {
+        moreButton.textContent = 'retry more...'
+        moreButton.disabled = false
+        return
+      }
+
+      moreButton.textContent = 'more...'
+      moreButton.disabled = false
+    }
+
+    document.querySelectorAll('details[data-session-id]').forEach((details) => {
+      attachDetails(details)
+    })
+
+    if (moreButton) {
+      moreButton.addEventListener('click', () => {
+        void loadMore()
+      })
+    }
+  </script>
+</ContentLayout>

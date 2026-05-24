@@ -1,0 +1,6 @@
+allowBuilds:
+  esbuild: false
+  sharp: false
+  workerd: false
+minimumReleaseAgeExclude:
+  - '@cloudflare/workers-types@4.20260524.1'

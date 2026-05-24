@@ -32,6 +32,46 @@ const { title, description, splashImage, prefetchLinks, preloadImages } = Astro.
       <Menu />
       {splashImage && <SplashImage src={splashImage} />}
       <main><slot /></main>
+      <script is:inline>
+        (() => {
+          const endpoint = '/api/session/nav'
+          // Keep one shared logger state across client-side navigations.
+          const globalState = (window.__sessionNavLogState ??= {
+            // Prevent attaching duplicate event listeners after page swaps.
+            installed: false,
+            // Used to suppress accidental duplicate logs fired in quick succession.
+            lastPath: '',
+            lastLoggedAt: 0
+          })
+
+          const logPath = () => {
+            const path = `${window.location.pathname}${window.location.search}${window.location.hash}`
+            const now = Date.now()
+
+            // Skip immediate duplicate path logs (e.g. overlapping lifecycle events).
+            if (path === globalState.lastPath && now - globalState.lastLoggedAt < 250) {
+              return
+            }
+
+            globalState.lastPath = path
+            globalState.lastLoggedAt = now
+
+            void fetch(endpoint, {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({ path }),
+              keepalive: true
+            }).catch(() => {})
+          }
+
+          if (!globalState.installed) {
+            document.addEventListener('astro:after-swap', logPath)
+            globalState.installed = true
+          }
+
+          logPath()
+        })()
+      </script>
       <script is:inline src="/js/image-enlarge.js"></script>
     </div>
   </body>

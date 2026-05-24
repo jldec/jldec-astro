@@ -62,5 +62,18 @@ The following conventions were established during the port.
 
 - `sharp` is required as a dependency for build-time image optimization. `.npmrc` hoists sharp and uses `node-linker=hoisted`.
 - `image: {}` in `astro.config.mjs` relies on Astro defaults (no explicit `service` or `layout` override needed).
+- Cloudflare support is installed with `astro add cloudflare`; keep `@astrojs/cloudflare` as the adapter.
+- Configure Cloudflare images with `adapter: cloudflare({ imageService: 'compile' })`.
+  This project uses build-time image compilation and does not require a runtime `IMAGES` binding.
+- Sessions use the custom Durable Object store (`SESSIONS`) via `src/session/driver.ts`.
+  Do not re-enable adapter-managed KV sessions (`SESSION` binding / `sessionKVBindingName`) for this project.
 - `compressHTML: false` is set to preserve readable HTML output.
-- Deployed as a static site on Cloudflare Workers (no adapter needed).
+- Deployed on Cloudflare Workers with `wrangler.jsonc` and `src/worker.ts`.
+
+## Sessions and diagnostics
+
+- Session payloads are stored in devalue format; decode with `parseStoredValue()` in `src/session/client.ts` before rendering.
+- Client navigation logging posts to `POST /api/session/nav` from `src/layouts/ContentLayout.astro` on initial load and `astro:after-swap`.
+- Session logging stores `navLog` (path/timestamp history) and `clientMeta` (Cloudflare city + short browser user-agent).
+- `/sessions` is a server-rendered diagnostics page (`prerender = false`) with native `<details>` rows and lazy detail fetch from `/api/sessions/[id]`.
+- Session list rows use compact summary format `yyyy-MM-dd hh:mm · city · browser` (no session ID in summary text).

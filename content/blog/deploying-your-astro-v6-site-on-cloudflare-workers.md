@@ -5,16 +5,36 @@ layout: BlogPostLayout
 splash:
   image: images/orangeflowers.webp
 ---
+# Deploying your Astro v6 site on Cloudflare Workers
 
+After the [Astro v6 announcement](https://astro.build/blog/astro-6/), I upgraded this site and revisited a deployment detail I had in my [Astro v5 blog starter](astro-v5-blog-starter): make sure Cloudflare only invokes the Worker for routes that actually need server logic.
 
-If you've ever set up a public HTTP website, you'll know that inevitably you'll see a lot of spammy requests for .php or wp-admin or other probes looking for server vulnerabilties.
+If you run a public website, you quickly see a steady stream of junk requests for paths like `.php` files, `wp-admin`, and other vulnerability probes. Workers are cheap, but there is no reason to run Worker code for requests that should just be handled as static assets.
 
-- Astro v6 [announcement](https://astro.build/blog/astro-6/)
-- mention [Astro v5 blog starter](astro-v5-blog-starter) 
+The goal is simple: use assets-first routing by default, and run the Worker first only on implemented server routes.
 
-##  worker first vs. assets first
-- even though workers are serverless, and very cheap, you don't want to serve junk requests
-- restrict routes for workers
-- serve assets with automatic not found handling
-- 
+## Worker first only where needed
 
+In this site, server logic is only needed for `/sessions` and `/api/*`, so those are the only paths in `run_worker_first`:
+
+```jsonc
+"assets": {
+  "directory": "dist",
+  "not_found_handling": "404-page",
+  "run_worker_first": ["/sessions", "/api/*"]
+}
+```
+
+That means requests for blog posts, images, CSS, JS, and random non-existent probe paths are resolved by Cloudflare Assets without hitting the Worker runtime.
+
+## Clean 404 handling for static misses
+
+I also added a `404.astro` page so the build emits `404.html`. With `"not_found_handling": "404-page"`, Cloudflare serves that static page for asset misses.
+
+The page is intentionally simple: an `<h2>404</h2>` and the missing URL shown underneath.
+
+## Why this pattern works
+
+This setup keeps costs and noise down, preserves dynamic behavior where needed, and gives predictable 404 behavior at the edge.
+
+It's a small change, but it is one of those practical defaults that makes Astro + Cloudflare feel solid in production.

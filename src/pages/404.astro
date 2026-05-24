@@ -1,0 +1,12 @@
+<h2>404</h2>
+<p id="missing-url"></p>
+
+<script is:inline>
+  function showMissingUrl() {
+    const el = document.getElementById('missing-url')
+    if (el) el.textContent = window.location.href
+  }
+
+  document.addEventListener('astro:page-load', showMissingUrl)
+  showMissingUrl()
+</script>

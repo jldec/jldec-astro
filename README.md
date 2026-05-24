@@ -1,6 +1,6 @@
 # jldec-astro
 
-Static website built with [Astro v6](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+Mostly static website built with [Astro v6](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
 
 ## Scripts
 

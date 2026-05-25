@@ -19,8 +19,14 @@ function formatTimestamp(value: number) {
   return `${year}-${month}-${day} ${hour}:${minute}`
 }
 
-function formatSummary(updatedAt: number, city: string | null, userAgent: string | null) {
-  return [formatTimestamp(updatedAt), city, userAgent].filter(Boolean).join(' · ')
+function formatSummary(
+  updatedAt: number,
+  city: string | null,
+  state: string | null,
+  colo: string | null,
+  userAgent: string | null
+) {
+  return [formatTimestamp(updatedAt), city, state, colo, userAgent].filter(Boolean).join(' ')
 }
 ---
 
@@ -34,7 +40,7 @@ function formatSummary(updatedAt: number, city: string | null, userAgent: string
       {initialSessions.map((session) => (
         <details class="mb-3 rounded border border-orange-500/40 px-3 py-2" data-session-id={session.sessionId}>
           <summary class="cursor-pointer">
-            <span>{formatSummary(session.updatedAt, session.city, session.userAgent)}</span>
+            <span>{formatSummary(session.updatedAt, session.city, session.state, session.colo, session.userAgent)}</span>
           </summary>
           <pre class="mt-2 mb-1" data-role="session-json">Open to load...</pre>
         </details>
@@ -97,7 +103,9 @@ function formatSummary(updatedAt: number, city: string | null, userAgent: string
     }
 
     function formatSummary(session) {
-      return [formatTimestamp(session.updatedAt), session.city, session.userAgent].filter(Boolean).join(' · ')
+      return [formatTimestamp(session.updatedAt), session.city, session.state, session.colo, session.userAgent]
+        .filter(Boolean)
+        .join(' ')
     }
 
     function createSessionDetails(session) {

@@ -1,5 +1,6 @@
 import { env } from 'cloudflare:workers'
 import { unflatten } from 'devalue'
+import { summarizeUserAgent, type UserAgentDetails } from './user-agent'
 
 const DEFAULT_BINDING_NAME = 'SESSIONS'
 const DEFAULT_OBJECT_NAME = 'SESSIONS'
@@ -32,7 +33,10 @@ export interface StoredSessionIdPage {
 
 export interface StoredSessionSummary extends StoredSessionId {
   city: string | null
+  state: string | null
+  colo: string | null
   userAgent: string | null
+  userAgentDetails: UserAgentDetails
 }
 
 export interface StoredSessionSummaryPage {
@@ -131,13 +135,17 @@ export async function listStoredSessionSummaries(
     nextCursor: page.nextCursor,
     sessions: page.sessions.map((session) => {
       const parsed = parseStoredValue(session.value)
-      const { city, userAgent } = extractClientMeta(parsed)
+      const { city, state, colo, userAgent } = extractClientMeta(parsed)
+      const summary = summarizeUserAgent(userAgent)
 
       return {
         sessionId: session.sessionId,
         updatedAt: session.updatedAt,
         city,
-        userAgent
+        state,
+        colo,
+        userAgent: summary.short,
+        userAgentDetails: summary.details
       }
     })
   }
@@ -208,23 +216,30 @@ function normalizeForJson(value: unknown, seen = new WeakMap<object, unknown>())
   return output
 }
 
-function extractClientMeta(value: unknown): { city: string | null; userAgent: string | null } {
+function extractClientMeta(value: unknown): {
+  city: string | null
+  state: string | null
+  colo: string | null
+  userAgent: string | null
+} {
   if (!value || typeof value !== 'object') {
-    return { city: null, userAgent: null }
+    return { city: null, state: null, colo: null, userAgent: null }
   }
 
   const root = value as Record<string, unknown>
   const clientMeta = unwrapSessionEntry(root.clientMeta)
 
   if (!clientMeta || typeof clientMeta !== 'object') {
-    return { city: null, userAgent: null }
+    return { city: null, state: null, colo: null, userAgent: null }
   }
 
   const meta = clientMeta as Record<string, unknown>
   const city = typeof meta.city === 'string' && meta.city.length > 0 ? meta.city : null
+  const state = typeof meta.state === 'string' && meta.state.length > 0 ? meta.state : null
+  const colo = typeof meta.colo === 'string' && meta.colo.length > 0 ? meta.colo : null
   const userAgent = typeof meta.userAgent === 'string' && meta.userAgent.length > 0 ? meta.userAgent : null
 
-  return { city, userAgent }
+  return { city, state, colo, userAgent }
 }
 
 function unwrapSessionEntry(value: unknown): unknown {

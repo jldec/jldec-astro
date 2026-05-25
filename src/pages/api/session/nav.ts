@@ -27,7 +27,9 @@ export const POST: APIRoute = async ({ request, session }) => {
   const existing = await session.get<NavLogEntry[]>(NAV_LOG_KEY)
   const navLog = Array.isArray(existing) ? existing : []
   const city = getCity(request)
-  const userAgent = shortUserAgent(request.headers.get('user-agent'))
+  const state = getState(request)
+  const colo = getColo(request)
+  const userAgent = getUserAgent(request)
 
   navLog.push({
     path,
@@ -38,6 +40,8 @@ export const POST: APIRoute = async ({ request, session }) => {
   session.set(NAV_LOG_KEY, navLog.slice(start))
   session.set(CLIENT_META_KEY, {
     city,
+    state,
+    colo,
     userAgent
   })
 
@@ -50,22 +54,25 @@ function getCity(request: Request): string | null {
   return typeof city === 'string' && city.length > 0 ? city : null
 }
 
-function shortUserAgent(userAgent: string | null): string | null {
-  if (!userAgent) return null
-
-  const matchers: Array<{ name: string; regex: RegExp }> = [
-    { name: 'Edge', regex: /Edg\/(\d+)/i },
-    { name: 'Chrome', regex: /Chrome\/(\d+)/i },
-    { name: 'Firefox', regex: /Firefox\/(\d+)/i },
-    { name: 'Safari', regex: /Version\/(\d+).+Safari\//i }
-  ]
-
-  for (const matcher of matchers) {
-    const match = userAgent.match(matcher.regex)
-    if (match) {
-      return `${matcher.name} ${match[1]}`
+function getState(request: Request): string | null {
+  const cfRequest = request as Request & {
+    cf?: {
+      region?: string | null
+      regionCode?: string | null
     }
   }
 
-  return userAgent.slice(0, 40)
+  const state = cfRequest.cf?.regionCode ?? cfRequest.cf?.region
+  return typeof state === 'string' && state.length > 0 ? state : null
+}
+
+function getColo(request: Request): string | null {
+  const cfRequest = request as Request & { cf?: { colo?: string | null } }
+  const colo = cfRequest.cf?.colo
+  return typeof colo === 'string' && colo.length > 0 ? colo : null
+}
+
+function getUserAgent(request: Request): string | null {
+  const userAgent = request.headers.get('user-agent')
+  return typeof userAgent === 'string' && userAgent.length > 0 ? userAgent : null
 }

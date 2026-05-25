@@ -26,6 +26,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.7",
     "devalue": "^5.8.1",
+    "my-ua-parser": "^2.0.4",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3",
     "wrangler": "^4.94.0"

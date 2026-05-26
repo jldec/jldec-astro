@@ -7,13 +7,13 @@ splash:
 ---
 # Deploying your Astro v6 site on Cloudflare Workers
 
-One of highlights of the [Astro v6 announcement](https://astro.build/blog/astro-6/) was an improved dev server built on Vite's environments API. This enables full integration with cloudflare workers both in dev and prod, making it easy to combine pre-rendered static assets, and server-rendered logic, in one Astro site.
+One of highlights of the [Astro v6 announcement](https://astro.build/blog/astro-6/) was an improved dev server built on Vite's environments API. This enables full integration with cloudflare workers both in dev and prod, making it easy to combine pre-rendered static assets and server-side logic in one Astro site.
 
+The one gotcha to this is that when you add the cloudflare adapter with `astro add cloudflare`, the default configuration will send all requests which don't match your prebuilt or public assets to the worker.  
 
+If you've ever run a public website, you quickly see a steady stream of junk requests for paths like `.php` files, `wp-admin`, and other vulnerability probes. 
 
-The one gotcha to this is that as aIf you run a public website, you quickly see a steady stream of junk requests for paths like `.php` files, `wp-admin`, and other vulnerability probes. Workers are cheap, but there is no reason to run Worker code for requests that should just be handled as static assets.
-
-The goal is simple: use assets-first routing by default, and run the Worker first only on implemented server routes.
+Workers are cheap, but there is no reason to run Worker code for requests that should just be handled as static assets.
 
 ## Worker first only where needed
 

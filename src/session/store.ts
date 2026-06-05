@@ -71,7 +71,10 @@ export class SessionStoreDO extends DurableObject {
 
   private getSessionById(sessionId: string): Response {
     const rows = this.ctx.storage.sql
-      .exec('SELECT session_id AS sessionId, updated_at AS updatedAt, value FROM sessions WHERE session_id = ?1', sessionId)
+      .exec(
+        'SELECT session_id AS sessionId, updated_at AS updatedAt, value FROM sessions WHERE session_id = ?1',
+        sessionId
+      )
       .toArray() as unknown as SessionRow[]
 
     return Response.json({ session: rows[0] ?? null })

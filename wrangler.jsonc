@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "jldec-astro",
   "main": "./src/worker.ts",
-  "compatibility_date": "2026-06-29",
+  "compatibility_date": "2026-05-28",
   "account_id": "a0b19134b3f8f7aaae377202538aafe3",
   "assets": {
     "directory": "dist",

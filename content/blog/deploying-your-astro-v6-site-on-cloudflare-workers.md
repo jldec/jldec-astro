@@ -9,9 +9,16 @@ splash:
 
 One of highlights of the [Astro v6 announcement](https://astro.build/blog/astro-6/) was an improved dev server built on Vite's environments API. This enables full integration with cloudflare workers both in dev and prod, making it easy to combine pre-rendered static assets and server-side logic in one Astro site.
 
-The one gotcha to this is that when you add the cloudflare adapter with `astro add cloudflare`, the default configuration will send all requests which don't match your prebuilt or public assets to the worker.  
+One small gotcha is that the default assets configuration provided by `astro add cloudflare` still sends all requests which _don't_ match your prebuilt or public assets to the worker.
 
-If you've ever run a public website, you quickly see a steady stream of junk requests for paths like `.php` files, `wp-admin`, and other vulnerability probes. 
+```jsonc
+"assets": {
+  "directory": "./dist",
+  "binding": "ASSETS"
+},
+```
+
+If you've ever run a public website, you quickly see a steady stream of junk requests for paths like `.php` files, `wp-admin`, and other vulnerability probes.
 
 Workers are cheap, but there is no reason to run Worker code for requests that should just be handled as static assets.
 
@@ -34,8 +41,6 @@ That means requests for blog posts, images, CSS, JS, and random non-existent pro
 I also added a `404.astro` page so the build emits `404.html`. With `"not_found_handling": "404-page"`, Cloudflare serves that static page for asset misses.
 
 The page is intentionally simple: an `<h2>404</h2>` and the missing URL shown underneath.
-
-## Why this pattern works
 
 This setup keeps costs and noise down, preserves dynamic behavior where needed, and gives predictable 404 behavior at the edge.
 

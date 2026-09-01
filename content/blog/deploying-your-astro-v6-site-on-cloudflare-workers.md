@@ -42,8 +42,6 @@ I also added a `404.astro` page so the build emits `404.html`. With `"not_found_
 
 The page is intentionally simple: an `<h2>404</h2>` and the missing URL shown underneath.
 
-## Why this pattern works
-
 This setup keeps costs and noise down, preserves dynamic behavior where needed, and gives predictable 404 behavior at the edge.
 
 It's a small change, but it is one of those practical defaults that makes Astro + Cloudflare feel solid in production.
